@@ -1,38 +1,39 @@
 package ExpenseService;
 
-import ExpenseService.Exception.UnexpectedProjectTypeException;
 import ExpenseService.Expense.ExpenseType;
 import ExpenseService.Project.Project;
 import ExpenseService.Project.ProjectType;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import static ExpenseService.ExpenseService.getExpenseCodeByProjectTypeAndName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExpenseServiceTest {
     @Test
-    void should_return_internal_expense_type_if_project_is_internal() throws UnexpectedProjectTypeException {
+    void should_return_internal_expense_type_if_project_is_internal() {
+        Project internalProject = new Project(ProjectType.INTERNAL, "project name");
+
+        ExpenseType expenseType = getExpenseCodeByProjectTypeAndName(internalProject);
+
+        assertEquals(ExpenseType.INTERNAL_PROJECT_EXPENSE, expenseType);
+    }
+
+    @Test
+    void should_return_expense_type_A_if_project_is_external_and_name_is_project_A() {
         // given
         // when
         // then
     }
 
     @Test
-    void should_return_expense_type_A_if_project_is_external_and_name_is_project_A() throws UnexpectedProjectTypeException {
+    void should_return_expense_type_B_if_project_is_external_and_name_is_project_B() {
         // given
         // when
         // then
     }
 
     @Test
-    void should_return_expense_type_B_if_project_is_external_and_name_is_project_B() throws UnexpectedProjectTypeException {
-        // given
-        // when
-        // then
-    }
-
-    @Test
-    void should_return_other_expense_type_if_project_is_external_and_has_other_name() throws UnexpectedProjectTypeException {
+    void should_return_other_expense_type_if_project_is_external_and_has_other_name() {
         // given
         // when
         // then

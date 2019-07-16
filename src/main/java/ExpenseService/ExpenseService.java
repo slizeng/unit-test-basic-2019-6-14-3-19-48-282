@@ -8,7 +8,7 @@ import static ExpenseService.Expense.ExpenseType.*;
 import static ExpenseService.Project.ProjectType.*;
 
 class ExpenseService {
-    static ExpenseType getExpenseCodeByProjectTypeAndName(Project project) throws UnexpectedProjectTypeException {
+    static ExpenseType getExpenseCodeByProjectTypeAndName(Project project)  {
         if(project.getProjectType() == INTERNAL){
             return INTERNAL_PROJECT_EXPENSE;
         }else{
