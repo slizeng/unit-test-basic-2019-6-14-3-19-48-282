@@ -1,5 +1,6 @@
 package ExpenseService;
 
+import ExpenseService.Exception.UnexpectedProjectTypeException;
 import ExpenseService.Expense.ExpenseType;
 import ExpenseService.Project.Project;
 import ExpenseService.Project.ProjectType;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static ExpenseService.ExpenseService.getExpenseCodeByProjectTypeAndName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExpenseServiceTest {
     @Test
@@ -47,8 +49,12 @@ class ExpenseServiceTest {
 
     @Test
     void should_throw_unexpected_project_exception_if_project_is_invalid() {
-        // given
-        // when
-        // then
+        Project unexpectedProject = new Project(ProjectType.UNEXPECTED_PROJECT_TYPE, "any name");
+        Project nullProject = new Project(null, "any name");
+
+        assertThrows(UnexpectedProjectTypeException.class,
+                () -> getExpenseCodeByProjectTypeAndName(unexpectedProject));
+        assertThrows(UnexpectedProjectTypeException.class,
+                () -> getExpenseCodeByProjectTypeAndName(nullProject));
     }
 }
